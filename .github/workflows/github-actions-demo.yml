@@ -38,4 +38,4 @@ jobs:
       - name: Deploy
         run: |
           hexo clean
-          hexo deployname: Github test
+          hexo deploy -g

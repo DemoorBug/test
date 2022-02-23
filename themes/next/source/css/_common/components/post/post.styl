@@ -1,0 +1,393 @@
+.post-body {
+  font-family: $font-family-posts;
+  +mobile() {
+    word-break: break-word;
+  }
+}
+
+.post-body .fancybox img {
+  display: block !important;
+  margin: 0 auto;
+  cursor: pointer;
+  cursor: zoom-in;
+  cursor: -webkit-zoom-in;
+}
+
+.post-body .image-caption {
+  margin: -20px auto 15px;
+  text-align: center;
+  font-size: $font-size-base;
+  color: $grey-dark;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.post-body .figure .caption {
+  @extend .post-body .image-caption;
+}
+
+.post-sticky-flag {
+  display: inline-block;
+  font-size: 16px;
+  -ms-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+.use-motion {
+  if hexo-config('motion.transition.post_block') {
+    .post-block,
+    .pagination,
+    .comments { opacity: 0; }
+  }
+  if hexo-config('motion.transition.post_header') { .post-header { opacity: 0; } }
+  if hexo-config('motion.transition.post_body') { .post-body { opacity: 0; } }
+  if hexo-config('motion.transition.coll_header') { .collection-title { opacity: 0; } }
+}
+
+@import "post-expand";
+@import "post-collapse";
+@import "post-type";
+@import "post-title";
+@import "post-meta";
+@import "post-button";
+@import "post-tags";
+@import "post-nav";
+@import "post-eof";
+@import "post-gallery";
+@import "post-reward" if hexo-config('alipay') or hexo-config('wechatpay') or hexo-config('bitcoin');
+@import "post-copyright" if hexo-config('post_copyright.enable');
+@import "post-widgets" if (hexo-config('facebook_sdk.enable') and hexo-config('facebook_sdk.like_button')) or (hexo-config('vkontakte_api.enable') and hexo-config('vkontakte_api.like')) or hexo-config('rating.enable') or (hexo-config('needmoreshare2.enable') and hexo-config('needmoreshare2.postbottom.enable'));
+@import "post-rtl";
+
+
+.page-home .btn {
+    display: inline-block;
+    padding: 0 20px;
+    font-size: 14px;
+    color: blue;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+
+}
+.page-home .post-button.text-center {
+  text-align: left;
+}
+
+.page-home .post-body {
+  background: #f9f9f9;
+  padding: 20px;
+  font-size: 80%;
+}
+
+.page-home .posts-expand .post-meta {
+    margin: 3px 0 20px 0;
+    text-align: left;
+}
+.page-home .posts-expand .post-title {
+    text-align: left;
+}
+
+.page-home .posts-expand {
+     padding-top: 0px;
+}
+
+.page-home .posts-expand .post-eof {
+    display: block;
+    margin: 30px auto 30px;
+    width: 100%;
+    height: 1px;
+    background: #ccc;
+    text-align: center;
+}
+.page-home .posts-expand .post {
+    margin-top: 60px;
+}
+
+.posts-expand .post-title-link::before {
+  bottom: -2px;
+  background-color: #555555;
+}
+@media (min-width: 980px) {
+  /* body .header {
+      width: 1147px;
+  }
+
+  body .container .main-inner {
+      width: 1147px;
+  }
+
+  body .content-wrap {
+      width: 895px;
+      min-height: 700px;
+  } */
+  .header-inner {
+    width: 980px
+  }
+  .main-inner {
+    width: 980px
+  }
+  body .footer-inner {
+    text-align: center;
+    width: 980px
+  }
+  body .local-search-popup {
+    margin-left: -490px;
+    width: 980px;
+  }
+}
+@media (min-width: 768px) {
+  body .menu .menu-item a {
+    transition-property:box-shadow,color;
+    padding: 0 15px;
+  }
+}
+@media (max-width: 767px) {
+  body .menu .menu-item a {
+    padding: 10px 20px;
+  }
+  .site-nav-toggle {
+    display: block;
+    margin-right: 10px;
+}
+
+.site-nav {
+     margin: 0;
+     padding: 0 10px;
+}
+}
+
+/*搜索*/
+body .local-search-popup .local-search-header {
+  background: #fff;
+}
+
+body .local-search-popup .popup-btn-close {
+  border-left: none;
+}
+body .local-search-popup {
+  border-radius: 0px;
+}
+body .local-search-popup .search-keyword {
+    border-bottom: 1px solid #7dcc7d;
+}
+body .local-search-popup .search-keyword {
+      color: #7dcc7d;
+}
+body .local-search-popup p.search-result {
+    border-bottom: 1px solid #cccccc3d;
+    padding: 5px 0;
+}
+/*搜索*/
+
+/*弹出toc*/
+.back-to-top {
+  color: #7dcc7d;
+}
+body .page-post-detail .sidebar-toggle-line {
+  background: #7dcc7d;
+}
+body .sidebar-toggle-line {
+  background: #7dcc7d;
+}
+body .sidebar-toggle {
+  background: none;
+}
+.back-to-top {
+  background: none;
+}
+
+body .sidebar-nav .sidebar-nav-active {
+    color: #7dcc7d;
+    border-bottom-color: #7dcc7d;
+}
+body .post-toc .nav .active-current > a {
+    color: #7dcc7d;
+}
+body .post-toc .nav .active > a {
+    color: #7dcc7d;
+    border-bottom-color: #7dcc7d;
+}
+body .post-toc .nav .active-current > a:hover {
+    color: #7dcc7d;
+}
+
+
+/*弹出toc*/
+.posts-collapse .post-title a {
+    color: #666;
+    border-bottom: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.posts-collapse .post-header {
+    border-bottom: none;
+}
+.posts-collapse .post-header {
+    background: #000000ba;
+    border-radius: 20px;
+    box-shadow: 0px 5px 4px 0px #ccc;
+    transition: all .2s;
+}
+.posts-collapse .post-header:hover {
+  background: #222222;
+}
+
+.posts-collapse .post-title a {
+    color: #fff;
+}
+
+
+time.post-time {
+    color: white;
+}
+
+
+
+.tag-cloud a {
+
+}
+
+/*搜索中途动画*/
+
+/* loader */
+.loader {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  /* max-width: 25%; */
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  background: #292a2a30;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+}
+
+
+.ball-scale-multiple {
+  position: relative;
+  -webkit-transform: translateY(-30px);
+      -ms-transform: translateY(-30px);
+          transform: translateY(-30px); }
+  .ball-scale-multiple > div:nth-child(2) {
+    -webkit-animation-delay: -0.4s;
+            animation-delay: -0.4s; }
+  .ball-scale-multiple > div:nth-child(3) {
+    -webkit-animation-delay: -0.2s;
+            animation-delay: -0.2s; }
+  .ball-scale-multiple > div {
+    background-color: #fff;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    margin: 2px;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+    position: absolute;
+    left: -30px;
+    top: 0px;
+    opacity: 0;
+    margin: 0;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: ball-scale-multiple 1s 0s linear infinite;
+            animation: ball-scale-multiple 1s 0s linear infinite; }
+@-webkit-keyframes ball-scale-multiple {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0; }
+  5% {
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0; } }
+
+@keyframes ball-scale-multiple {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0; }
+  5% {
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0; } }
+.ball-scale-multiple > div {
+  background-color: #7dcc7d;
+}
+
+
+/* logo */
+
+body .header-inner {
+    padding: 10px 0 10px;
+}
+body .menu {
+  margin: 6px 0 0 0;
+}
+
+
+body .menu .menu-item a:hover {
+    background: none;
+    box-shadow: 0px 0px 21px rgba(156, 146, 146, 0.46);
+    color: #000000;
+    /*text-shadow: rgb(218, 218, 218) 1px 1px, rgb(223, 223, 223) 2px 2px, rgb(228, 228, 228) 3px 3px, rgb(234, 234, 234) 4px 4px, rgb(239, 239, 239) 5px 5px, rgb(245, 245, 245) 6px 6px;*/
+
+}
+body .menu .menu-item .fa {
+  margin-right: 0;
+}
+.post-body a {
+    color: #7dcc7d;
+    text-decoration: none;
+    outline: none;
+    word-wrap: break-word;
+    transition: .3s color;
+}
+/**/
+
+.tag-cloud-tags a{
+    border: none;
+  transition: .3s color,text-shadow;font-weight: bold;
+      margin: 0 20px;
+}
+.tag-cloud-tags a:hover{
+      text-shadow: 0px 0px 4px #d6baba;x
+}
+
+body .menu .menu-item a {
+    border-radius: 20px;
+}
+
+body {
+    -webkit-tap-highlight-color: transparent;
+}
+.site-nav-toggle button {
+  outline: 0;
+}
+.post-body a:hover {
+    color: #111;
+}
+body .posts-expand .post-title-link::before {
+  height: 1px;
+}
+.tag-cloud-tags a {
+  color: #7b7676;;
+}

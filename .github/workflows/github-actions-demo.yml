@@ -4,6 +4,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
       steps:
-        run: |
-          pwd
-          ls
+        - run: |
+            pwd
+            ls

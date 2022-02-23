@@ -3,6 +3,7 @@ on: [push]
 jobs: 
   build-and-deploy:
     runs-on: ubuntu-latest
-      run: |
-        pwd
-        ls
+      steps:
+        run: |
+          pwd
+          ls

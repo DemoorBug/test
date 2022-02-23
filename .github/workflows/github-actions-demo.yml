@@ -6,6 +6,10 @@ jobs:
     steps:
       - shell: bash
         run: |
-          ls > output.log
-          cat output.log
+          expr 1 + 1 > output.log
+      - name: Upload output file
+        uses: actions/upload-artifact@v2
+        with: 
+          name: output-log-file
+          path: output.log
 

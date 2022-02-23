@@ -4,7 +4,8 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'testJ'
-      - run: ls $PWD
-        shell: bash
+      - shell: bash
+        run: |
+          ls > output.log
+          cat output.log
 

@@ -1,13 +1,5 @@
 name: Github test
 on: [push]
-jobs: 
-  Explore-Github-Action:
-    runs-on: ubuntu-latest
-    steps: 
-      - run: echo 'sucess'
-      - run: pwd
-      - run: cd ..
-      - run: ls 
-      - run: cd ..
-      - run: ls
-        
+run: |
+  pwd
+  ls

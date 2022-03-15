@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="typescript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="常用算法map() 对范围中每个值应用一个函数,并返回应用该函数的结果12map([&quot;apple&quot;, &quot;orange&quot;, &quot;peach&quot;], (item) =&amp;gt; item.length)// [5,6,5] filter() 对范围中的每个值应用谓词(?),过滤掉谓词返回false的那些值12filter([&quot;apple&quot;, &quot;orange&quot;, &quot;peach&quot;], (item) =&amp;gt;">
+<meta name="keywords" content="typescript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Programming">
+<meta property="og:url" content="demoorbug.github.io/2022/02/14/Programming/index.html">
+<meta property="og:site_name" content="696px">
+<meta property="og:description" content="常用算法map() 对范围中每个值应用一个函数,并返回应用该函数的结果12map([&quot;apple&quot;, &quot;orange&quot;, &quot;peach&quot;], (item) =&amp;gt; item.length)// [5,6,5] filter() 对范围中的每个值应用谓词(?),过滤掉谓词返回false的那些值12filter([&quot;apple&quot;, &quot;orange&quot;, &quot;peach&quot;], (item) =&amp;gt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-03-15T22:58:15.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Programming">
+<meta name="twitter:description" content="常用算法map() 对范围中每个值应用一个函数,并返回应用该函数的结果12map([&quot;apple&quot;, &quot;orange&quot;, &quot;peach&quot;], (item) =&amp;gt; item.length)// [5,6,5] filter() 对范围中的每个值应用谓词(?),过滤掉谓词返回false的那些值12filter([&quot;apple&quot;, &quot;orange&quot;, &quot;peach&quot;], (item) =&amp;gt;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="demoorbug.github.io/2022/02/14/Programming/"/>
+
+
+
+
+
+  <title>Programming | 696px</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="site-title">696px</span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            <!-- 
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+             -->
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            <!-- 
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+             -->
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            <!-- 
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+             -->
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            <!-- 
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+             -->
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://demoorbug.github.io" rel="section">
+            <!-- 
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+             -->
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="demoorbug.github.io/blog/2022/02/14/Programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DEBUG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="696px">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Programming</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-14T03:57:35+08:00">
+                2022-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/javascript/typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">typescript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2022/02/14/Programming/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2022/02/14/Programming/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="常用算法"><a href="#常用算法" class="headerlink" title="常用算法"></a>常用算法</h1><p>map() 对范围中每个值应用一个函数,并返回应用该函数的结果<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map([<span class="string">"apple"</span>, <span class="string">"orange"</span>, <span class="string">"peach"</span>], (item) =&gt; item.length)</span><br><span class="line"><span class="comment">// [5,6,5]</span></span><br></pre></td></tr></table></figure></p>
+<p>filter() 对范围中的每个值应用谓词(?),过滤掉谓词返回false的那些值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">filter([<span class="string">"apple"</span>, <span class="string">"orange"</span>, <span class="string">"peach"</span>], (item) =&gt; item.length == <span class="number">5</span>)</span><br><span class="line"><span class="comment">// ["apple", "peach"]</span></span><br></pre></td></tr></table></figure></p>
+<p>reduce() 使用给定函数合并范围中的值, 并返回一个值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">reduce([<span class="string">"apple"</span>, <span class="string">"orange"</span>, <span class="string">"peach"</span>], <span class="string">""</span>, (acc, item) =&gt; acc + item)</span><br><span class="line"><span class="comment">// ""初始值, "appleorangepech" 结果值</span></span><br><span class="line"><span class="comment">// acc是累积项, 从初始值开始,最后得到所有元素合并后的值</span></span><br><span class="line">[<span class="string">"apple"</span>,<span class="string">"orange"</span>, <span class="string">"peach"</span>].reduce(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> acc+item, <span class="string">"123"</span>)</span><br><span class="line"><span class="comment">// array.reduce(callback, initiaValue)</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>上面这种用法不对,应该是得自己封装吧</p>
+</blockquote>
+<blockquote>
+<p>在高层面上,编译器或解析器将把我们编写的源代码转换成机器(或运行时)能够理解的指令. 当运行时是一台物理计算机时,转换的指令将是CPU指令; 当运行时是虚拟机时, 则有自己的指令集和工具 </p>
+</blockquote>
+<blockquote>
+<p>类型的主要优点在于正确性、不可变性、 封装、 可组合性、和可读性. 这5种优点时优秀的软件设计和行为的根本特性. 系统中总有出息混乱或者无序状态的倾向, 而上述特性则起到抗衡这种倾向的作用.</p>
+</blockquote>
+<h1 id="不可变性"><a href="#不可变性" class="headerlink" title="不可变性"></a>不可变性</h1><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.4</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">safeDivide</span>(<span class="params"></span>): <span class="title">nubmer</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> x: <span class="built_in">number</span> = <span class="number">42</span></span><br><span class="line">  <span class="comment">// 使用常量 const x: number = 42</span></span><br><span class="line">  <span class="keyword">if</span> (x == <span class="number">0</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"x should not be 0"</span>);</span><br><span class="line">  x = x - <span class="number">42</span></span><br><span class="line">  <span class="comment">// 修改常量会导致编译错误</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">42</span> / x <span class="comment">//除零导致无穷大</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>变量被另一个并发执行的线程修改,或者被另外调用的函数悄悄修改. 一旦值发生变化, 执行检查的保证就不再有效, 如果这里使用常量就不会出现这个问题</p>
+<blockquote>
+<p>从内存表示的角度来说,可变与不可变x没有区别. 常量性只对编译器有意义, 它是类型系统启用的一个属性<br>当涉及并发时,不可变性特别有用,因为如果数据不可变,就不会发生数据竞争</p>
+</blockquote>
+<h1 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h1><p>封装值当是隐藏代码内部机制的功能,这里的代码可以是函数、类或者模块<br>我们利用封装, 是因为它可以帮助我们处理复杂性: 将代码拆分为更小的组件, 每个组件只向外界公开严格的需要的项, 而其他实现细节则被隐藏并隔离起来<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.6 封装程度不足</span></span><br><span class="line"><span class="keyword">class</span> SafeDivisor &#123;</span><br><span class="line">  divisor: <span class="built_in">number</span> = <span class="number">1</span></span><br><span class="line">  <span class="comment">// private divisor: number = 1</span></span><br><span class="line">  <span class="comment">// 变为私有成员,外部调用修改的时候ts就不会编译</span></span><br><span class="line">  setDivisor(value: <span class="built_in">number</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value == <span class="number">0</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"value should not be 0"</span>)</span><br><span class="line">    <span class="keyword">this</span>.divisor = value</span><br><span class="line">  &#125;</span><br><span class="line">  divide(x: <span class="built_in">number</span>): <span class="built_in">number</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x / <span class="keyword">this</span>.divisor</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sd = <span class="keyword">new</span> SafeDivisor()</span><br><span class="line">sd.divisor = <span class="number">0</span> <span class="comment">// 因为除数成员是公有的,所以检查可能被绕过修改</span></span><br><span class="line">sd.divide(<span class="number">42</span>)</span><br></pre></td></tr></table></figure></p>
+<p>public和private成员的内存表示是一样的</p>
+<p>封装或信息隐藏使我们能够将逻辑和数据拆分到一个公有接口和一个非公有实现中. 在大型系统中, 这张拆分非常有帮助, 因为使用接口(或抽象)使理解一段特定代码的作用变得更加简单. 我们只需要理解组件的借口, 而不必理解其全部实现细节. 封装也有助于将非公有信息限制在一个边界内, 并保证外部代码不能修改这些信息,因为他们根本就访问不了这些信息.</p>
+<p>封装出现在多个层次,例如,服务将其API公开为接口, 模块导出其接口并隐藏实现细节, 类只公开公有成员, 等等. 与嵌套娃娃一样, 代码两部分之间的关系越弱, 共享的信息就越少. 这样一来, 组件对其内部管理的数据能够做出的保证就得到了强化, 因为如果不经过该组件的接口, 外部代码将无法修改这些数据</p>
+<h1 id="可组合性"><a href="#可组合性" class="headerlink" title="可组合性"></a>可组合性</h1><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.8 不可组合的系统</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findFirstnegativeNumber</span>(<span class="params"><span class="built_in">number</span> : <span class="built_in">number</span>[]</span>): <span class="title">number</span> | <span class="title">undefined</span></span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i of numbers) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span>) <span class="keyword">return</span> i</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// console.error("No matching value found")</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findFirestOneCharacterString</span>(<span class="params"><span class="built_in">string</span>: <span class="built_in">string</span>[]</span>): <span class="title">string</span> | <span class="title">undefined</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> str of strings) &#123;</span><br><span class="line">    <span class="keyword">if</span> (str.length == <span class="number">1</span>) <span class="keyword">return</span> str</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// console.error("No matching value found")</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设有一个新的需求: 当在不到满足条件元素时,就记录一个错误,那就需要更新两个函数, 这就很麻烦了.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.10 可组合系统</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">first</span>&lt;<span class="title">T</span>&gt;(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  range: T[],</span></span></span><br><span class="line">  p: (elem: T) =&gt; boolean</span><br><span class="line">): T | <span class="literal">undefined</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> elem of range) &#123;</span><br><span class="line">    <span class="keyword">if</span> (p(elem)) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(elem);</span><br><span class="line">      <span class="keyword">return</span> elem</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findFirstNegativeNumber</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  <span class="built_in">number</span>: <span class="built_in">number</span>[]</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">number</span> | <span class="title">undefined</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> first(<span class="built_in">number</span>, <span class="function"><span class="params">n</span> =&gt;</span> n &lt; <span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findFirestOneCharacterString</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  <span class="built_in">string</span>: <span class="built_in">string</span>[]</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">string</span> | <span class="title">undefined</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> first(<span class="built_in">string</span>, <span class="function"><span class="params">n</span> =&gt;</span> n.length == <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在第10章讨论泛型算法和迭代器的时候将会看到, 我们可以使用这个函数变得更加通用. 目前, 它只操作某个类型的T的一个数组. 可以扩展这个函数, 让它遍历人意数据结构</p>
+<h1 id="类型系统的类型"><a href="#类型系统的类型" class="headerlink" title="类型系统的类型"></a>类型系统的类型</h1><p>静态类型在编译时检查类型, 所以当完成变以后, 运行时的值一定有正确的类型. 另一方面, 动态类型则将类型检查推迟到运行时, 所以类型不匹配就成了运行时错误<br>强类型系统只会做很少的(甚至不做)隐士类型转换, 而弱类型系统则允许更多隐式类型转换<br>javascript时动态类型, typescript 时静态类型</p>
+<blockquote>
+<p>动态类型不会在编译时施加任何类型约束. 日常交流中有时会将动态类型叫做”鸭子类型” (duck typing), 这个名称来自俗语: “如果一个动物走起来像鸭子, 叫起来像鸭子,那么它就是一只鸭子”<br>ts中使用any关键字可以模拟动态类型</p>
+</blockquote>
+<p>js是弱类型,ts是强类型,<code>==</code>运算符在ts中无法编译,会直接报错</p>
+<h1 id="空类型-amp-单元类型"><a href="#空类型-amp-单元类型" class="headerlink" title="空类型 &amp; 单元类型"></a>空类型 &amp; 单元类型</h1><p>函数在所有代码路径上都抛出异常(throw new Error(‘error’))、程序可能执行无限循环, 或者可能导致程序崩溃. 这些都算空类型<code>never</code>,如果用<code>void</code>就会存在误导性. 这些函数不是不返回有意义的值, 而是根本不返回</p>
+<p>单元类型是只有一个可能值的类型. 对于这种类型变量, 检查其值是没有意义的, 它只能是哪一个值. 当函数的结果没有意义时, 我们会使用单元类型<code>void</code></p>
+<p>两个取值类型. 大多数语言都提供了布尔类型, 这是一个标准的、 只有两个值的类型</p>
+<h1 id="数值类型的常见陷阱"><a href="#数值类型的常见陷阱" class="headerlink" title="数值类型的常见陷阱"></a>数值类型的常见陷阱</h1><p>0.10+0.10+0.10 !== 0.30<br><a href="为什么0.1+0.1+0.1不等于0.3">https://gauravkk22.medium.com/why-0-1-0-2-0-3-is-false-in-js-mystery-unsolved-with-solution-4f7db2755f18</a><br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2.10</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">epsilonEqual</span>(<span class="params">a: <span class="built_in">number</span>, b: <span class="built_in">number</span></span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.abs(a-b) &lt;= <span class="built_in">Number</span>.EPSILON</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(epsilonEqual(<span class="number">0.1</span>+<span class="number">0.1</span>+<span class="number">0.1</span>, <span class="number">0.3</span>)) <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 因为0.3和0.30000000000000004在彼此的圆整误差内</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="编码文本"><a href="#编码文本" class="headerlink" title="编码文本"></a>编码文本</h1><p>处理文本最好用库, grapheme-splittes,能够处理自负的书写位<br>上面这个库可帮助避免在处理字符串时最常出现的三类错误:<br>在字符串级别而不是书写位级别操纵编码文本<br>在字节级别而不是字符级别操纵编码文本<br>采用错误的编码来将一个字节序列解释为文本,例如试图将UTF-16编码文本解释为UTF-8文本,或者反过来解释</p>
+<blockquote>
+<p>以前有门课程就专门说过不要直接使用(忘了是那个方法,substring?splice?)拆分文本,也没说啥原因,应该就是这种情况</p>
+</blockquote>
+<p>UTF-8 8位==1个字节==取决于字符(英文1, 中文3, unicode 2)<br>但是uft-8是可变字节和uft-16一样,utf-8中的中文是3个字节,而unicode是两个字节</p>
+<p>UTF-32 32位==4字节==1个字符<br>所有</p>
+<h1 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h1><p>元祖类型: 元祖类型由一组类型构成,通过它们在元祖中的位置可以访问这些组成类型. 元祖提供了一种特殊的分组数据的方式, 允许我们将不同的类型的多个值作为一个值进行传递</p>
+<blockquote>
+<p>元祖可以精确到每一个元素的类型</p>
+</blockquote>
+<p>记录类型: 记录类型与元祖类型相似, 可将其他类型组合在一起. 但是, 元祖中安装分量值的位置来访问值, 而在记录类型中, 无名可以为分量设置名称, 并通过名称来访问值. 在不同语言中, 记录类型被称为记录或者结构</p>
+<blockquote>
+<p>这里感觉用记录类型很麻烦,挺奇怪的,估计后面会讲type Point = {}?</p>
+</blockquote>
+<p>枚举类型: 枚举类型的一个变量可以是提供的值和任何一个.每当我们有一小组可能的取值, 并且想要以不会导致歧义的方式表示他们时,就可以使用枚举</p>
+<p>可选类型: Ts中用<code>|</code>来表示<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3.12 可选类型</span></span><br><span class="line"><span class="keyword">class</span> Optional&lt;T&gt; &#123;</span><br><span class="line">  <span class="keyword">private</span> value: T | <span class="literal">undefined</span>;</span><br><span class="line">  <span class="keyword">private</span> assigned: <span class="built_in">boolean</span>;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">value?: T</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value) &#123;</span><br><span class="line">      <span class="keyword">this</span>.value = value;</span><br><span class="line">      <span class="keyword">this</span>.assigned = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.value = <span class="literal">undefined</span></span><br><span class="line">      <span class="keyword">this</span>.assigned = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  hasvalue(): <span class="built_in">boolean</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.assigned</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getValue(): T &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.assigned) <span class="keyword">throw</span> <span class="built_in">Error</span>()</span><br><span class="line">    <span class="keyword">return</span> &lt;T&gt;<span class="keyword">this</span>.value <span class="comment">// 这是什么玩意啊? 不知道这样写意义何在</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Either类型, 见 3.14.ts<br>在发生错误时抛出异常,这是返回结构或错误的一个有效例子: 函数要么返回一个结果,要么抛出一个异常. 在某些情况下, 不能使用异常, 所以优先选择使用Either类型, 例如: 当在进程间或线程间传播错误时; 作为一种设计原则, 当错误本身算不上异常时(通常发生在处理用户输入的情况); 当调用的操作系统的API, 而这些API使用错误码时, 等等. 在这些情况中, 我们不能或不希望抛出异常,而是行为表达我们成功获得了值或者失败了, 此时最好把这种情形编码成”值或错误”, 而不是”值和错误”<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Either</span></span><br><span class="line"><span class="keyword">class</span> Either&lt;L, R&gt; &#123;</span><br><span class="line">  <span class="keyword">private</span> readonly value: L | R</span><br><span class="line">  <span class="keyword">private</span> readonly left: <span class="built_in">boolean</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">constructor</span>(<span class="params">value: L | R, left: <span class="built_in">boolean</span></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.value = value</span><br><span class="line">    <span class="keyword">this</span>.left = left</span><br><span class="line">  &#125;</span><br><span class="line">  isLeft(): <span class="built_in">boolean</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.left</span><br><span class="line">  &#125;</span><br><span class="line">  getLeft(): L &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.isLeft()) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>()</span><br><span class="line">    <span class="keyword">return</span> &lt;L&gt;<span class="keyword">this</span>.value</span><br><span class="line">  &#125;</span><br><span class="line">  isRight(): <span class="built_in">boolean</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> !<span class="keyword">this</span>.left</span><br><span class="line">  &#125;</span><br><span class="line">  getRight(): R &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.isRight()) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>()</span><br><span class="line">    <span class="keyword">return</span> &lt;R&gt;<span class="keyword">this</span>.value</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> makeLeft&lt;L, R&gt;(value: L) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Either&lt;L, R&gt;(value, <span class="literal">true</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> makeRight&lt;L, R&gt;(value: R) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Either&lt;L, R&gt;(value, <span class="literal">false</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum</span> InputError &#123;</span><br><span class="line">  NoInput,</span><br><span class="line">  Invalid</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">enum</span> DayOfWeek &#123;</span><br><span class="line">  Sunday,</span><br><span class="line">  Monday,</span><br><span class="line">  TuesDay</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Result = Either&lt;InputError, DayOfWeek&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseDayOfWeek</span>(<span class="params">input: <span class="built_in">string</span></span>): <span class="title">Result</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input == <span class="string">""</span>) Either.makeLeft(InputError.NoInput)</span><br><span class="line">  <span class="keyword">switch</span> (input.toLowerCase()) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"sunday"</span>:</span><br><span class="line">      <span class="keyword">return</span> Either.makeRight(DayOfWeek.Sunday);</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"sunday"</span>:</span><br><span class="line">      <span class="keyword">return</span> Either.makeRight(DayOfWeek.Monday);</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"sunday"</span>:</span><br><span class="line">      <span class="keyword">return</span> Either.makeRight(DayOfWeek.TuesDay);</span><br><span class="line">    <span class="keyword">default</span>: </span><br><span class="line">      <span class="keyword">return</span> Either.makeLeft(InputError.Invalid)</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>变体类型: 变体类型也称为标签联合类型, 包含任意数的基本类型的值. 标签指的是即使基本类型有重合的值,我们仍能够准确说明该值来自那个类型.</p>
+<p>原来typescript也可以这么难</p>
+<h1 id="类型安全"><a href="#类型安全" class="headerlink" title="类型安全"></a>类型安全</h1><p>火星探测项目的类型约束<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">const</span> NsType: unique symbol</span><br><span class="line"><span class="keyword">class</span> Ns &#123;</span><br><span class="line">  readonly value: <span class="built_in">number</span></span><br><span class="line">  [NsType]: <span class="built_in">void</span></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">value: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.value = value</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">const</span> LbfsType: unique symbol</span><br><span class="line"><span class="keyword">class</span> Lbfs &#123;</span><br><span class="line">  readonly value: <span class="built_in">number</span></span><br><span class="line">  [LbfsType]: <span class="built_in">void</span></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">value: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.value = value</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">LbfsToNs</span>(<span class="params">lbfs: Lbfs</span>): <span class="title">Ns</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Ns(lbfs.value * <span class="number">4.4482216152605</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trajectoryCorrenction</span>(<span class="params">momentum: Ns</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (momentum.value &lt; <span class="keyword">new</span> Ns(<span class="number">2</span>).value) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'momentum is too low'</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">provideMonmentum</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  trajectoryCorrenction(LbfsToNs(<span class="keyword">new</span> Lbfs(<span class="number">1.5</span>)))</span><br><span class="line">  <span class="comment">// 如果这里没有Ns传入值,就会报错,比如1.5</span></span><br><span class="line">  <span class="comment">// 必须经过Ns才行,例: new Ns(1.5)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一般来说,构造函数不应该做太繁重的工作, 而应该初始化对象的成员<br>private一个构造函数,就只能用工厂函数调用<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 工厂实施约束</span></span><br><span class="line">declear <span class="keyword">const</span> celsiusType: unique symbol</span><br><span class="line"><span class="comment">// typescript中用`unique symbol`来确保有相同形状的其他对象不会被解释为这个类型的一种方式</span></span><br><span class="line"><span class="keyword">class</span> Celsius &#123;</span><br><span class="line">  readonly value: <span class="built_in">number</span></span><br><span class="line">  [celsusType]: <span class="built_in">void</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">constructor</span>(<span class="params">value: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.value = value</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> makeCelsius(value: <span class="built_in">number</span>): Celsius | <span class="literal">undefined</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (value &lt; <span class="number">-273.15</span>) <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Celsius(value)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/typescript/" rel="tag"># typescript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2021/10/14/Read-documents/" rel="next" title="Read_documents">
+                <i class="fa fa-chevron-left"></i> Read_documents
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2022/02/18/Mac-hyper-key/" rel="prev" title="Mac hyper key 仅需要使用hammerspoon就可实现, 可配合Alfred, 不需要借助Karabiner-Elements 和 BetterTouchTool | Mac hyper key only requires hammerspoon, works with Alfred and does not require Karabiner-Elements or BetterTouchTool.">
+                Mac hyper key 仅需要使用hammerspoon就可实现, 可配合Alfred, 不需要借助Karabiner-Elements 和 BetterTouchTool | Mac hyper key only requires hammerspoon, works with Alfred and does not require Karabiner-Elements or BetterTouchTool. <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DEBUG</p>
+              <p class="site-description motion-element" itemprop="description">go</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常用算法"><span class="nav-text">常用算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不可变性"><span class="nav-text">不可变性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#封装"><span class="nav-text">封装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可组合性"><span class="nav-text">可组合性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型系统的类型"><span class="nav-text">类型系统的类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#空类型-amp-单元类型"><span class="nav-text">空类型 &amp; 单元类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数值类型的常见陷阱"><span class="nav-text">数值类型的常见陷阱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编码文本"><span class="nav-text">编码文本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合"><span class="nav-text">组合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型安全"><span class="nav-text">类型安全</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018/9/11 00:00
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DEBUG</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    <a class="theme-link" target="_blank" href="http://www.696px.com">696px</a>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'demoorbug.github.io/2022/02/14/Programming/';
+          this.page.identifier = '2022/02/14/Programming/';
+          this.page.title = 'Programming';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'frRzxfBf7ILkb3j8VGQAqdIs-gzGzoHsz',
+        appKey: 'XlCDzgMdSzgzFpgyuWY66yYM',
+        placeholder: '智慧如你，不想发表一点想法咩~',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="loader">' +
+          '<div class="loader-inner ball-scale-multiple">' +
+          '<div></div>' +
+          '<div></div>' +
+          '<div></div>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".loader").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
